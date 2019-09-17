@@ -21,6 +21,8 @@ export class AppComponent implements OnInit {
     return this.model.items;
   }
 
+ // The performance can be improved if the datatype is map, that way search using key would be faster
+ //
   addItemToShoppingCart(product, quantity, price) {
     var productUpdated= false;
 
