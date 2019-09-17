@@ -16,6 +16,49 @@
 <body class="m-1 p-1">
     <div class="container">
         <div class="row">
+            <div class="col-sm-3">
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <select class='form-control' #product [(ngModel)]="selectedProduct">
+                            <option *ngFor="let p of products" [ngValue]="p">{{p.name}}</option>
+                        </select>
+                    </tr>
+                    <tr>
+                        <th>Quantity</th>
+                        <select class='form-control' #quantity [(ngModel)]="selectedQuantity">
+                            <option value='1'>1</option>
+                            <option value='2'>2</option>
+                            <option value='3'>3</option>
+                            <option value='4'>4</option>
+                            <option value='5'>5</option>
+                        </select>
+                    </tr>
+
+                    <tr>
+                        <th>Price</th>
+                        <td *ngIf="selectedProduct">
+                            {{selectedProduct.price*selectedQuantity | currency:"AUD":"symbol":"2.2-2"}}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="width:50%;">
+                            <button class="btn btn-primary mt-1"
+                                    (click)="addItemToShoppingCart(selectedProduct.name, quantity.value, selectedProduct.price*selectedQuantity)">
+                                Add
+                            </button>
+                        </td>
+
+                        <td style="width:50%;" align="right">
+                            <button class="btn btn-primary mt-1" (click)="clear()">
+                                Cancel
+                            </button>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
                 <div class="col-lg-9 float-lg-right">
                         <h3>Shopping Cart</h3>
                         <table class="table table-striped ">
@@ -45,53 +88,8 @@
                     </div>
 
 
-            <div class="col-sm-3">
-                <table>
-                    <tr>
-                        <th>Name</th>
-                        <select class='form-control' #product [(ngModel)]="selectedProduct">
-                            <option *ngFor="let p of products" [ngValue]="p">{{p.name}}</option>
-                        </select>
-                    </tr>
-                    <tr>
-                        <th>Quantity</th>
-                        <select class='form-control' #quantity [(ngModel)]="selectedQuantity">
-                            <option value='1'>1</option>
-                            <option value='2'>2</option>
-                            <option value='3'>3</option>
-                            <option value='4'>4</option>
-                        </select>
-                    </tr>
 
-                    <tr>
-                        <th>Price</th>
-                        <td *ngIf="selectedProduct">
-                            {{selectedProduct.price*selectedQuantity | currency:"AUD":"symbol":"2.2-2"}}
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td style="width:50%;">
-                            <button class="btn btn-primary mt-1"
-                                (click)="addItemToShoppingCart(selectedProduct.name, quantity.value, selectedProduct.price*selectedQuantity)">
-                                Add
-                            </button>
-                        </td>
-
-                        <td style="width:50%;" align="right">
-                            <button class="btn btn-primary mt-1" (click)="clear()">
-                                Cancel
-                            </button>
-                        </td>
-                    </tr>
-
-                </table>
-            </div>
-        
-
-            
         </div>
-        
     </div>
 </body>
 
