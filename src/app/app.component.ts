@@ -53,7 +53,6 @@ export class AppComponent implements OnInit {
     return this.productService.find(id);
 
   }
-
   getTotal() {
     var total = 0;
     for (let item of this.model.items) {
